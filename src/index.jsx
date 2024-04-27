@@ -1,3 +1,3 @@
-export { Router } from './Router.jsx'
-export { Link } from './Router.jsx'
-export { Route } from './Route.jsx'
+export { Router } from './Router'
+export { Link } from './Router'
+export { Route } from './Route'
