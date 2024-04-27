@@ -1,6 +1,6 @@
 {
   "name": "apiperno-router",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "main": "lib/index.jsx",
   "module": "lib/index.js",
@@ -21,16 +21,16 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
-    "path-to-regexp": "6.2.2"
+    "path-to-regexp": "6.2.1"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
+    "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.0.2",
     "@eslint/js": "9.1.1",
-    "@swc/cli": "^0.3.12",
+    "@swc/cli": "0.3.12",
     "@swc/core": "1.5.1",
     "@testing-library/react": "15.0.5",
     "@types/react": "18.2.79",
