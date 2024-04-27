@@ -1,13 +1,14 @@
 import { useState, useEffect, Children } from 'react'
 import { EVENTS } from './consts.js'
 import { match } from 'path-to-regexp'
+import { getCurrentPath } from './utils.js'
 
 export function Router ({ children, routes = [], defaultComponent: DefaultComponent = () => <h1>404 Not Found :_ )</h1> }) {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  const [currentPath, setCurrentPath] = useState(getCurrentPath )
   
   useEffect(() => {
     const onLocationChange = () => {
-      setCurrentPath(window.location.pathname)
+      setCurrentPath(getCurrentPath )
     }
     
     window.addEventListener(EVENTS.PUSHSTATE, onLocationChange)
@@ -21,15 +22,16 @@ export function Router ({ children, routes = [], defaultComponent: DefaultCompon
 
   }, [])
 
-  let routeParams = {}
+  
   const routesFromChildren = Children.map(children, ({ props, type }) => {
     const { name } = type
     const isRoute = name === 'Route'
     return isRoute ? props : null
   })
 
-  const routesToUse = routes.concat(routesFromChildren)
+  const routesToUse = routes.concat(routesFromChildren).filter(Boolean)
 
+  let routeParams = {}
   const Page = routesToUse.find(({ path }) => {
     if(path === currentPath) return true
 
@@ -39,7 +41,7 @@ export function Router ({ children, routes = [], defaultComponent: DefaultCompon
 
     routeParams = matched.params
     return true
-  })?.component
+  })?.Component
   
   return Page 
   ? <Page routeParams={ routeParams }/> 
